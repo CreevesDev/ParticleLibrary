@@ -1,0 +1,6 @@
+name: ParticlesLibrary
+version: ${project.version}
+main: me.creeves.particleslibrary.ParticlesLibrary
+api-version: 1.17
+authors: [ Creeves ]
+description: A library for particles.
