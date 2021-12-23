@@ -11,13 +11,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FairyWings extends Shape {
+    //Example of the shape produced can be viewed here: https://gyazo.com/abfdc0fc4f020bd9d47809a0ce575633
+    //Video also shows a wisp and halo effect
+
     private double height;
     private double frequency;
     private double size;
     public FairyWings(Shapes shape, ConfigurationSection configurationSection) {
         super(shape, configurationSection);
-        this.height = configurationSection.getDouble("height", 1);
-        this.frequency = configurationSection.getDouble("frequency", 0.05);
+        this.height = configurationSection.getDouble("height", 1); //Height off the ground
+        this.frequency = configurationSection.getDouble("frequency", 0.05); //TODO: rename variable 'step' or something similar
         this.size = configurationSection.getDouble("size", 1);
     }
 
@@ -26,18 +29,15 @@ public class FairyWings extends Shape {
         Location location = entity.getLocation();
         List<Location> wireframe = new ArrayList<>();
         Vector playerDirection = entity.getEyeLocation().getDirection();
-        //float yaw = player.getEyeLocation().getYaw(); //Subtracted 180 so it is negative half the time (-180, 180)
-        //double rotationAngle = Bukkit.getCurrentTick()/20 % Math.PI/3 * Math.signum(-yaw);
-        //System.out.println(playerDirection.setY(0).angle(getPerpendicularVector(playerDirection)));
         Vector perpendicularVector1 = getPerpendicularVector(playerDirection);
         Vector perpendicularVector2 = getPerpendicularVector(playerDirection);
         for (double theta = 0; theta < Math.PI; theta += frequency) {
-            double radius = Math.sin(2*theta);
+            double radius = Math.sin(2*theta); //https://www.desmos.com/calculator/48zb9jbn4n
             double horizontalOffset = radius * Math.cos(theta) * size;
             double verticalOffset = radius * Math.sin(theta) * size + height;
             Vector wing1Offset = perpendicularVector1.clone().multiply(horizontalOffset).setY(verticalOffset);
-            Vector wing2Offset = perpendicularVector2.clone().multiply(-horizontalOffset).setY(verticalOffset);
-            Vector parallelOffset = playerDirection.clone().normalize().multiply(0.35).setY(0);
+            Vector wing2Offset = perpendicularVector2.clone().multiply(-horizontalOffset).setY(verticalOffset); //Generates second wing
+            Vector parallelOffset = playerDirection.clone().normalize().multiply(0.35).setY(0); //Moves wings back, behind player rather than inside model
             Location particleLocation = location.clone().add(wing1Offset).subtract(parallelOffset);
             Location mirroredLocation = location.clone().add(wing2Offset).subtract(parallelOffset);
             wireframe.add(particleLocation);
@@ -45,6 +45,4 @@ public class FairyWings extends Shape {
         }
         return wireframe;
     }
-
-
 }

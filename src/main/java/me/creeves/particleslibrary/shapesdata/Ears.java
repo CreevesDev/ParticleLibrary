@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Ears extends Shape {
+    //Essentially creates two mirrored circles parallel to the z-axis
 
     private double height;
     private double frequency;
@@ -19,9 +20,9 @@ public class Ears extends Shape {
     public Ears(Shapes shape, ConfigurationSection configurationSection) {
         super(shape, configurationSection);
         this.height = configurationSection.getDouble("height", 0.2);
-        this.frequency = configurationSection.getDouble("frequency", 0.05);
+        this.frequency = configurationSection.getDouble("frequency", 0.05); ////TODO: rename variable 'step' or something similar
         this.size = configurationSection.getDouble("size", 1);
-        this.spread = configurationSection.getDouble("spread", 0.2);
+        this.spread = configurationSection.getDouble("spread", 0.2); //Defines by how far each ear should be offset from player centre
     }
 
     @Override

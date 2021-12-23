@@ -4,6 +4,7 @@ import me.creeves.particleslibrary.shapesdata.*;
 
 public enum Shapes {
     HELIX(Helix.class), WINGS(Wings.class), POINT(Point.class), HALO(Halo.class), WISP(Wisp.class), HEART(Heart.class), FAIRY_WINGS(FairyWings.class), EARS(Ears.class);
+    //Current shape types available
 
     private Class<? extends Shape> shapeClass;
 

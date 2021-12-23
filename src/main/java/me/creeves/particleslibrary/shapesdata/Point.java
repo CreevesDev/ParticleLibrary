@@ -11,6 +11,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Point extends Shape {
+    //Simplest particle type. Wireframe contains a single particle with random coordinates within config defined bounds.
+    //Example of the shape produced can be viewed here: https://gyazo.com/c408559c28c76ea20667b0bb501fc1a4
+    //Example above shows point with offset to 0 and spread at 0.5.
+
     private double spread;
     private double yOffset;
 

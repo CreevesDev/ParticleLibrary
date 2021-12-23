@@ -6,10 +6,10 @@ import org.bukkit.configuration.ConfigurationSection;
 import java.util.ArrayList;
 import java.util.List;
 
-public class OptionsData {
+public class OptionsData { //For particles with Particle.DustOptions nested class. Used for REDSTONE particle type.
     private List<Color> colours = new ArrayList<>();
     private float scale;
-    public OptionsData(ConfigurationSection configurationSection) {
+    public OptionsData(ConfigurationSection configurationSection) { //Obtains optional options configuration section from particle section.
         ConfigurationSection coloursSection = configurationSection.getConfigurationSection("colours");
         for (Object item : coloursSection.getValues(false).values()) {
             if (item instanceof ConfigurationSection) {

@@ -19,11 +19,9 @@ public abstract class Shape {
         this.configurationSection = configurationSection;
     }
 
-    public Shape() {
+    public Shape() { }
 
-    }
-
-    public abstract List<Location> getWireframe(LivingEntity entity);
+    public abstract List<Location> getWireframe(LivingEntity entity); //Wire frame represents a list of locations that particles should be spawned at.
 
     public static Shape create(Shapes shape, ConfigurationSection configurationSection) {
         try {
@@ -42,7 +40,7 @@ public abstract class Shape {
         return configurationSection;
     }
 
-    public Vector getPerpendicularVector(Vector directionVector) {
+    public Vector getPerpendicularVector(Vector directionVector) { //Used for shape types that need to depend on player yaw (facing direction).
         double x = ((directionVector.getZ() * 1)) / (directionVector.getX() * -1);
         Vector perpendicularVector = new Vector(x, 0, 1).normalize();
         return perpendicularVector;

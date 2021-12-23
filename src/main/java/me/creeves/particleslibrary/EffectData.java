@@ -8,7 +8,7 @@ import org.bukkit.entity.Player;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EffectData {
+public class EffectData { //Used in ESParticles to build effects connected to each player.
     private final List<ParticleData> particles = new ArrayList<>();
     private String name;
 

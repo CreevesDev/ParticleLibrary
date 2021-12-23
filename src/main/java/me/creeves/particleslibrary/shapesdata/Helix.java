@@ -12,8 +12,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Helix extends Shape {
+    //Creates animated helix.
+    //Example of the shape produced can be viewed here: https://gyazo.com/ead409d61c8fc0bdf22997c1c83d05f4
 
-    private double angleOffset;
     private double radius;
     private double frequency;
     private double speed;
@@ -22,12 +23,11 @@ public class Helix extends Shape {
 
     public Helix(Shapes shape, ConfigurationSection configurationSection) {
         super(shape, configurationSection);
-        this.angleOffset = configurationSection.getDouble("angleOffset", 0D);
-        this.radius = configurationSection.getDouble("radius", 0.5D);
-        this.speed = configurationSection.getDouble("speed", 1);
-        this.waveFrequency = configurationSection.getDouble("wave_frequency", 1);
-        this.frequency = configurationSection.getDouble("frequency", 0.05);
-        this.height = configurationSection.getDouble("height", 2);
+        this.radius = configurationSection.getDouble("radius", 0.5D); //Defines radius (in blocks) of helix centred on players (x,y) coordinates.
+        this.speed = configurationSection.getDouble("speed", 1); //Defines how many ticks it takes for animation to make a full rotation around player at a particular y.
+        this.waveFrequency = configurationSection.getDouble("wave_frequency", 1); //'Horizontal' (when graphed) stretch transformation applied to trig function, determines frequency of rotations.
+        this.frequency = configurationSection.getDouble("interval", 0.05); //Determines interval (in blocks) between y-coordinates for which locations computed at. Smaller value = more particles.
+        this.height = configurationSection.getDouble("height", 2); //Height the helix should extend to starting at the player's feet location.
     }
 
     @Override
@@ -43,17 +43,5 @@ public class Helix extends Shape {
             wireframe.add(particleLocation);
         }
         return wireframe;
-    }
-
-    public double getAngleOffset() {
-        return angleOffset;
-    }
-
-    public double getRadius() {
-        return radius;
-    }
-
-    public double getSpeed() {
-        return speed;
     }
 }

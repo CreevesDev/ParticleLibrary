@@ -11,22 +11,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Wisp extends Shape {
+    //Similar to helix except
+    //Example of the shape produced can be viewed here: https://gyazo.com/a2599daf5bc26b79bd9ec6cd545d06fb
 
-    private double angleOffset;
     private double radius;
-    private double frequency;
     private double speed;
     private double waveFrequency;
     private double height;
 
     public Wisp(Shapes shape, ConfigurationSection configurationSection) {
         super(shape, configurationSection);
-        this.angleOffset = configurationSection.getDouble("angleOffset", 0D);
-        this.radius = configurationSection.getDouble("radius", 0.5D);
-        this.speed = configurationSection.getDouble("speed", 1);
-        this.waveFrequency = configurationSection.getDouble("wave_frequency", 1);
-        this.frequency = configurationSection.getDouble("frequency", 0.05);
-        this.height = configurationSection.getDouble("height", 2);
+        this.radius = configurationSection.getDouble("radius", 0.5D); //Defines radius of helix centred on players (x,y) coordinates.
+        this.speed = configurationSection.getDouble("speed", 1); //Defines how quickly animation moves around helix.
+        this.waveFrequency = configurationSection.getDouble("wave_frequency", 1); //Can be seen as number of rotations helix makes around player in a set vertical distance
+        this.height = configurationSection.getDouble("height", 2); //Defines how high above the players current y-location the helix should extend to.
     }
 
     @Override

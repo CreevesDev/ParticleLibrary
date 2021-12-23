@@ -6,7 +6,7 @@ public final class ParticlesLibrary extends JavaPlugin {
 
     @Override
     public void onEnable() {
-
+        //No code required here as plugin acts as a library for ESParticles. Also used by SkillsLibrary written by Xemor.
     }
 
     @Override

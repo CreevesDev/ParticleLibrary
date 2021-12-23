@@ -21,7 +21,7 @@ public class ParticleData {
     private List<Color> colours;
     private float scale = 1;
 
-    public ParticleData(ConfigurationSection configurationSection) {
+    public ParticleData(ConfigurationSection configurationSection) { //Fetches particle parameters from a configuration section exemplified in ESParticles 'effects.yml'.
         duration = (int) Math.round(configurationSection.getDouble("duration", 2.5D) * 20);
         particle = Particle.valueOf(configurationSection.getString("type", "PORTAL"));
         amount = configurationSection.getInt("amount", 1);
@@ -42,20 +42,20 @@ public class ParticleData {
         return colours.get(Bukkit.getCurrentTick()/4 % colours.size());
     }
 
-    public void spawnParticle(LivingEntity entity) {
+    public void spawnParticle(LivingEntity entity) { //Needs to be improved. Colour is calculated even when not in use.
         List<Location> particleLocations = shapeData.getWireframe(entity);
         for (Location location : particleLocations) {
             Color colour = getColourForTick();
-            Particle.DustOptions dustOptions = colour == null ? null : new Particle.DustOptions(colour, scale);
+            Particle.DustOptions dustOptions = colour == null ? null : new Particle.DustOptions(colour, scale); //Dust options are only applicable for the 'REDSTONE' particle type.
             entity.getWorld().spawnParticle(particle, location, amount, 0, 0, 0, 0, dustOptions);
         }
     }
 
-    public int getDuration() {
+    public int getDuration() { //For future use in plugins - not currently used.
         return duration;
     }
 
-    public Particle getParticle() {
+    public Particle getParticle() { //For future use in plugins - not currently used.
         return particle;
     }
 }

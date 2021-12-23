@@ -15,6 +15,9 @@ public class Wings extends Shape {
 
     @Override
     public List<Location> getWireframe(LivingEntity entity) {
+
+        //INCOMPLETE - to be added in future update.
+
         return null;
     }
 }
